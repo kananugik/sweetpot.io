@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Leaflet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+      
+        <!-- Leaflet JavaScript -->
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+      
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Tourist attractions - South Korea</title>
+        <style>
+        #container{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #map{
+            height: 80vh;
+            width: 80vw;
+        }
+        html, body{
+            margin: 0;
+            padding: 0%;
+        }
+        </style>
+    </head>
+    <body>
+        <div id ="container">
+            <div id ="map"></div>
+        </div>
+        
+        <script>
+            var map = L.map('map').setView([37.7749, -122.4194], 13);
+            function initMap(){
+                var location = {lat: 35.907757,lng: 127.766922};
+                var map = new google.maps.Map(document.getElementById("map"),{
+                    zoom: 9,
+                    center: location
+                });
+                var attractions = [
+      {
+        name: 'Gyeongbokgung Palace',
+        lat: 37.5779,
+        lng: 126.9768,
+        description: 'Gyeongbokgung Palace is a stunning royal palace in Seoul.'
+      },
+      {
+        name: 'Bulguksa Temple',
+        lat: 35.7902,
+        lng: 129.3309,
+        description: 'Bulguksa Temple is a UNESCO World Heritage site in Gyeongju.'
+      },
+      {
+        name: 'Jeju Island',
+        lat: 33.4996,
+        lng: 126.5312,
+        description: 'Jeju Island is a beautiful volcanic island known for its natural wonders.'
+      },
+      {
+        name: 'Namiseom Island',
+        lat: 37.7910,
+        lng: 127.5250,
+        description: 'Namiseom Island, also known as Nami Island, is a picturesque island famous for its beautiful tree-lined paths and scenic landscapes.'
+      },
+      {
+        name: 'Haeundae Beach',
+        lat: 35.1586,
+        lng: 129.1608,
+        description: 'Haeundae Beach is a popular sandy beach located in Busan, offering stunning ocean views and a vibrant atmosphere.'
+      },
+      {
+        name: 'Seoraksan National Park',
+        lat: 38.1195,
+        lng: 128.4654,
+        description: 'Seoraksan National Park is a breathtaking mountainous park known for its stunning autumn foliage, hiking trails, and picturesque scenery.'
+      },
+      {
+        name: 'Gwangalli Beach',
+        lat: 35.1547,
+        lng: 129.1170,
+        description: 'Gwangalli Beach is another famous beach in Busan, known for its fine sand, city skyline views, and the iconic Gwangan Bridge.'
+      },
+      {
+        name: 'Bukchon Hanok Village',
+        lat: 37.5823,
+        lng: 126.9835,
+        description: 'Bukchon Hanok Village is a traditional Korean village in Seoul, featuring well-preserved hanok houses that showcase traditional Korean architecture.'
+      },
+      {
+        name: 'Jeonju Hanok Village',
+        lat: 35.8151,
+        lng: 127.1530,
+        description: 'Jeonju Hanok Village is a charming historic village in Jeonju, where you can experience traditional culture, taste delicious local food, and explore hanok-lined streets.'
+      },
+      {
+        name: 'Boseong Green Tea Fields',
+        lat: 34.8373,
+        lng: 127.6635,
+        description: 'Boseong Green Tea Fields are vast tea plantations in Boseong, offering stunning green landscapes and the opportunity to learn about tea production.'
+      },
+      {
+        name: 'Gamcheon Culture Village',
+        lat: 35.0987,
+        lng: 129.0326,
+        description: ' Gamcheon Culture Village is a colorful hillside village in Busan, known for its vibrant art murals, quirky sculptures, and charming alleyways.'
+      },
+      {
+        name: 'Namsan Seoul Tower',
+        lat: 37.5515,
+        lng: 126.9880,
+        description: 'Namsan Seoul Tower is an iconic landmark in Seoul, providing panoramic views of the city and serving as a popular spot for couples and tourists.'
+      },
+      {
+        name: 'Gyeongju Historic Areas',
+        lat: 35.8562,
+        lng: 129.2242,
+        description: 'The Gyeongju Historic Areas in Gyeongju city are home to numerous historical sites and artifacts, including UNESCO World Heritage Sites like Bulguksa Temple and the Gyeongju Historic Area.'
+      },
+    ];
+
+    // Loop through attractions and add markers with pop-ups
+    attractions.forEach(function(attraction) {
+      var marker = new google.maps.Marker({
+        position: { lat: attraction.lat, lng: attraction.lng },
+        map: map
+      });
+
+      var infowindow = new google.maps.InfoWindow({
+        content: '<h3>' + attraction.name + '</h3><p>' + attraction.description + '</p>'
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    });
+            }
+        </script>
+
+    </body>
+</html>
